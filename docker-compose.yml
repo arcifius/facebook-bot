@@ -1,0 +1,8 @@
+version: "2"
+services:
+  robot:
+    build: .
+    image: robot
+    volumes:
+      - ./:/opt/robot
+      - ~/.m2:/root/.m2
