@@ -2,7 +2,7 @@
  * Fetcher interface
  * 
  */
-package br.com.arcifius.robot.interfaces;
+package br.com.arcifius.robot.network;
 
 import br.com.arcifius.robot.models.Course;
 import java.io.IOException;

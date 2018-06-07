@@ -7,7 +7,6 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import br.com.arcifius.robot.interfaces.IFetcher;
 import br.com.arcifius.robot.models.Course;
 
 import java.io.IOException;

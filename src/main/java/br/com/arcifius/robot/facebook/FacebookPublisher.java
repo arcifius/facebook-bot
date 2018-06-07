@@ -1,7 +1,6 @@
-package br.com.arcifius.robot.facebook.integration;
+package br.com.arcifius.robot.facebook;
 
-import br.com.arcifius.robot.interfaces.IPublisher;
-import br.com.arcifius.robot.models.FacebookImage;
+import br.com.arcifius.robot.facebook.models.FacebookImage;
 import com.restfb.BinaryAttachment;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
@@ -27,9 +26,12 @@ public class FacebookPublisher implements IPublisher {
      * @param pageID
      * @param pageAccessToken
      */
-    public FacebookPublisher(String pageID, String pageAccessToken) {
-        this.pageID = pageID;
-        facebookClient = new DefaultFacebookClient(pageAccessToken, Version.VERSION_2_7);
+    public FacebookPublisher() {
+        this.pageID = (String) System.getenv().get("FACEBOOK_PAGE_ID");
+        facebookClient = new DefaultFacebookClient(
+            (String) System.getenv().get("FACEBOOK_PAGE_TOKEN"),
+            Version.VERSION_2_7
+        );
     }
 
     /**
@@ -54,7 +56,7 @@ public class FacebookPublisher implements IPublisher {
     public String publishImage(FacebookImage image, String postMessage) {
         try {
             FacebookType publication = facebookClient.publish(pageID + "/photos", FacebookType.class,
-                    BinaryAttachment.with(image.getName(), image.getByteArray(), image.getMime()),
+                    BinaryAttachment.with(image.getName(), image.getBytes()),
                     Parameter.with("message", postMessage));
 
             return publication.getId();

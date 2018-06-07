@@ -2,9 +2,9 @@
  * Publisher interface
  * 
  */
-package br.com.arcifius.robot.interfaces;
+package br.com.arcifius.robot.facebook;
 
-import br.com.arcifius.robot.models.FacebookImage;
+import br.com.arcifius.robot.facebook.models.FacebookImage;
 
 /**
  *
