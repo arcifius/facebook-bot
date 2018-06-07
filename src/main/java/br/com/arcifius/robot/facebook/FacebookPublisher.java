@@ -27,9 +27,9 @@ public class FacebookPublisher implements IPublisher {
      * @param pageAccessToken
      */
     public FacebookPublisher() {
-        this.pageID = (String) System.getenv().get("FACEBOOK_PAGE_ID");
+        this.pageID = (String) System.getenv().get("FACEBOOKMANAGER_PAGE_ID");
         facebookClient = new DefaultFacebookClient(
-            (String) System.getenv().get("FACEBOOK_PAGE_TOKEN"),
+            (String) System.getenv().get("FACEBOOKMANAGER_PAGE_TOKEN"),
             Version.VERSION_2_7
         );
     }

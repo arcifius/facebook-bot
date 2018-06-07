@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface IState {
 
-    public boolean save(Course course);
+    public boolean update(String school, List<Course> courses);
 
     public List<Course> retrieve(String school);
 
