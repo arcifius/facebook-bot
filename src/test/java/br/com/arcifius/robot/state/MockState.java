@@ -1,25 +1,28 @@
 package br.com.arcifius.robot.state;
 
-import java.util.List;
-
-import br.com.arcifius.robot.models.Course;
+import br.com.arcifius.robot.models.School;
 
 public class MockState implements IState {
-    private List<Course> courses;
-    private boolean saveShouldSucceed;
+    private School school;
+    private boolean updateShouldSucceed;
 
-    MockState(List<Course> courses, boolean saveShouldSucceed) {
-        this.courses = courses;
-        this.saveShouldSucceed = saveShouldSucceed;
+    public MockState(School school, boolean updateShouldSucceed) {
+        this.school = school;
+        this.updateShouldSucceed = updateShouldSucceed;
+    }
+
+    public MockState(School school) {
+        this.school = school;
+        this.updateShouldSucceed = false;
     }
 
     @Override
-    public List<Course> retrieve(String school) {
-        return this.courses;
+    public School retrieve(String school) {
+        return this.school;
     }
 
     @Override
-    public boolean update(String school, List<Course> courses) {
-        return this.saveShouldSucceed;
+    public boolean update(School school) {
+        return this.updateShouldSucceed;
     }
 }

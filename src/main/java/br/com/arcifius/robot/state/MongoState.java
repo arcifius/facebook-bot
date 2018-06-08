@@ -13,9 +13,10 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import br.com.arcifius.robot.models.Course;
+import br.com.arcifius.robot.models.School;
+
 import com.mongodb.client.FindIterable;
 
 /**
@@ -26,6 +27,7 @@ import com.mongodb.client.FindIterable;
 public class MongoState implements IState {
 
     private MongoClient mongo;
+    Gson gson = new Gson();
 
     private MongoDatabase connect() {
         MongoClientURI uri = new MongoClientURI(System.getenv().get("FACEBOOKMANAGER_DATABASE_URI"));
@@ -40,7 +42,7 @@ public class MongoState implements IState {
     }
 
     @Override
-    public List<Course> retrieve(String school) {
+    public School retrieve(String school) {
         MongoDatabase database = this.connect();
         MongoCollection<Document> schools = database.getCollection("schools");
         BasicDBObject fields = new BasicDBObject("name", school);
@@ -52,7 +54,7 @@ public class MongoState implements IState {
         } else {
             // If the school isnt present, create an entry for it
             target = new Document();
-            List<Course> courses = new LinkedList<>();
+            List<Course> courses = new ArrayList<>();
             target.append("name", school);
             target.append("courses", courses);
             schools.insertOne(target);
@@ -61,22 +63,21 @@ public class MongoState implements IState {
         // Dispose mongo connection
         this.disconnect();
 
-        return (List<Course>) target.get("courses");
+        return gson.fromJson(target.toJson(), School.class);
     }
 
     @Override
-    public boolean update(String school, List<Course> courses) {
+    public boolean update(School school) {
         MongoDatabase database = this.connect();
         MongoCollection<Document> schools = database.getCollection("schools");
-        Gson gson = new Gson();
 
-        List<BasicDBObject> formattedCourses = new ArrayList<>();
-        for (Course course : courses) {
-            formattedCourses.add(BasicDBObject.parse(gson.toJson(course)));
+        List<BasicDBObject> jsonCourses = new ArrayList<>();
+        for (Course course : school.getCourses()) {
+            jsonCourses.add(BasicDBObject.parse(gson.toJson(course)));
         }
 
-        Document result = schools.findOneAndUpdate(Filters.eq("name", school),
-                Updates.set("courses", formattedCourses));
+        Document result = schools.findOneAndUpdate(Filters.eq("name", school.getName()),
+                Updates.set("courses", jsonCourses));
 
         // Dispose mongo connection
         this.disconnect();

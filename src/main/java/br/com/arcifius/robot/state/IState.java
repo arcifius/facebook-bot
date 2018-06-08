@@ -1,7 +1,6 @@
 package br.com.arcifius.robot.state;
 
-import br.com.arcifius.robot.models.Course;
-import java.util.List;
+import br.com.arcifius.robot.models.School;
 
 /**
  * IState
@@ -10,8 +9,8 @@ import java.util.List;
  */
 public interface IState {
 
-    public boolean update(String school, List<Course> courses);
+    public boolean update(School school);
 
-    public List<Course> retrieve(String school);
+    public School retrieve(String school);
 
 }

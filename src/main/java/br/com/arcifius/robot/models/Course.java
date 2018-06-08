@@ -22,8 +22,6 @@ public class Course {
     private String time_available;
     private String topics;
     private String logo_url;
-    // private ArrayList<Lecture> lectures;
-    // private Category category;
 
     public String getCourse_id() {
         return course_id;

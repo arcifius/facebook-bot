@@ -22,8 +22,8 @@ public class Main {
         verifyParams.put("school", System.getenv().get("FACEBOOKMANAGER_SCHOOL"));
 
         SundialJobScheduler.startScheduler("br.com.arcifius.robot.jobs");
-        SundialJobScheduler.addJob("Verify", "br.com.arcifius.robot.jobs.Verify", verifyParams, false);
-        SundialJobScheduler.addJob("Post", "br.com.arcifius.robot.jobs.Post", null, true);
+        SundialJobScheduler.addJob("VerifyJob", "br.com.arcifius.robot.jobs.VerifyJob", verifyParams, false);
+        SundialJobScheduler.addJob("PostJob", "br.com.arcifius.robot.jobs.PostJob", null, true);
     }
 
 }
