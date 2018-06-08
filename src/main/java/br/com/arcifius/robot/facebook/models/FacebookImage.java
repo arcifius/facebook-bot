@@ -6,6 +6,10 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+
 /**
  * Represents an image that could be sent to Facebook.
  *
@@ -37,16 +41,16 @@ public class FacebookImage {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         try {
+            HttpResponse<InputStream> stream = Unirest.get(this.url.toString()).asBinary();
+
             byte[] chunk = new byte[4096];
             int bytesRead;
-            
-            InputStream stream = this.url.openStream();
 
-            while ((bytesRead = stream.read(chunk)) > 0) {
+            while ((bytesRead = stream.getBody().read(chunk)) > 0) {
                 outputStream.write(chunk, 0, bytesRead);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (UnirestException | IOException e) {
+            e.printStackTrace(System.err);
             return null;
         }
 

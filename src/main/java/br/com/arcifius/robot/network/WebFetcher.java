@@ -13,17 +13,36 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 /**
- * Web Fetcher
- *
+ * Web Fetcher<br>
+ * Try to fetch network resource 5 times
+ * 
  * @author Augusto Russo
  */
 public class WebFetcher implements IFetcher {
+    private final int maxTries = 5;
+    private int currentTries = 0;
+
     @Override
     public List<Course> fetch(String school) throws MalformedURLException, IOException {
         URL url = new URL("https://" + school + ".eadbox.com/api/courses");
-        InputStreamReader reader = new InputStreamReader(url.openStream());
-        Type listType = new TypeToken<List<Course>>(){}.getType();
-        List<Course> courses = new Gson().fromJson(reader, listType);
+        List<Course> courses = null;
+
+        do {
+            courses = get(url);
+        } while (courses == null && currentTries < maxTries);
+
         return courses;
+    }
+
+    public List<Course> get(URL url) {
+        try {
+            InputStreamReader reader = new InputStreamReader(url.openStream());
+            Type listType = new TypeToken<List<Course>>() {
+            }.getType();
+            List<Course> courses = new Gson().fromJson(reader, listType);
+            return courses;
+        } catch (IOException ex) {
+            return null;
+        }
     }
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import br.com.arcifius.robot.models.Course;
@@ -37,6 +38,7 @@ public class VerifyActionTest {
     }
 
     @Test
+    @DisplayName("Should be able to detect new courses")
     public void verifyTest() throws Exception {
         IFetcher fetcher = new MockFetcher(coursesFromSource);
         School school = new School("school", coursesFromState);

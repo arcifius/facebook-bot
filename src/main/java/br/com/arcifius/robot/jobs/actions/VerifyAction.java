@@ -9,8 +9,8 @@ import br.com.arcifius.robot.models.School;
 import br.com.arcifius.robot.network.IFetcher;
 
 public class VerifyAction implements IAction {
-    private IFetcher fetcher;
-    private School school;
+    private final IFetcher fetcher;
+    private final School school;
 
     public VerifyAction(IFetcher fetcher, School school) {
         this.fetcher = fetcher;

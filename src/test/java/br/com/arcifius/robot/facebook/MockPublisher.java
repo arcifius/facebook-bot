@@ -6,9 +6,14 @@ public class MockPublisher implements IPublisher {
     private String postID;
     private boolean shouldSucceed;
 
-    MockPublisher(String postID, boolean shouldSucceed) {
+    public MockPublisher(String postID, boolean shouldSucceed) {
         this.postID = postID;
         this.shouldSucceed = shouldSucceed;
+    }
+
+    public MockPublisher(String postID) {
+        this.postID = postID;
+        this.shouldSucceed = true;
     }
 
     @Override
@@ -30,7 +35,7 @@ public class MockPublisher implements IPublisher {
     }
 
     @Override
-    public String publishImage(FacebookImage image, String postMessage) {
+    public String publishImageWithText(FacebookImage image, String postMessage) {
         if (shouldSucceed) {
             return this.postID;
         } else {

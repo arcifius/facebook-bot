@@ -12,10 +12,10 @@ import br.com.arcifius.robot.facebook.models.FacebookImage;
  */
 public interface IPublisher {
 
+    public String publish(String postMessage);
+
     public String publishImage(FacebookImage image);
 
-    public String publishImage(FacebookImage image, String postMessage);
-
-    public String publish(String postMessage);
+    public String publishImageWithText(FacebookImage image, String postMessage);
 
 }

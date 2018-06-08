@@ -13,7 +13,7 @@ public class MockState implements IState {
 
     public MockState(School school) {
         this.school = school;
-        this.updateShouldSucceed = false;
+        this.updateShouldSucceed = true;
     }
 
     @Override

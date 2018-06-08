@@ -25,12 +25,17 @@ import com.mongodb.client.FindIterable;
  * @author Augusto Russo
  */
 public class MongoState implements IState {
-
+    
+    private final Gson gson = new Gson();
+    private final String mongoURI;
     private MongoClient mongo;
-    Gson gson = new Gson();
+
+    public MongoState(String mongoURI) {
+        this.mongoURI = mongoURI;
+    }
 
     private MongoDatabase connect() {
-        MongoClientURI uri = new MongoClientURI(System.getenv().get("FACEBOOKMANAGER_DATABASE_URI"));
+        MongoClientURI uri = new MongoClientURI(this.mongoURI);
         this.mongo = new MongoClient(uri);
         MongoDatabase database = this.mongo.getDatabase("robotState");
         return database;

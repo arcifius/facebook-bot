@@ -2,7 +2,6 @@ package br.com.arcifius.robot.jobs;
 
 import org.knowm.sundial.Job;
 import org.knowm.sundial.SundialJobScheduler;
-import org.knowm.sundial.annotations.CronTrigger;
 import org.knowm.sundial.exceptions.JobInterruptException;
 
 import java.util.HashMap;
@@ -15,16 +14,21 @@ import br.com.arcifius.robot.models.School;
 import br.com.arcifius.robot.network.IFetcher;
 import br.com.arcifius.robot.state.IState;
 
-@CronTrigger(cron = "0/10 * * * * ?")
 public class VerifyJob extends Job {
 
     @Override
     public void doRun() throws JobInterruptException {
         System.out.println("Looking for new courses...");
 
+        // Expected context variables
         IFetcher fetcher = this.getJobContext().get("fetcher");
         IState state = this.getJobContext().get("state");
-        String schoolName = this.getJobContext().get("school");
+        String schoolName = this.getJobContext().get("schoolName");
+
+        if (fetcher == null || state == null || schoolName == null) {
+            System.err.println("Verify job expects the job context to contain (IFetcher fetcher, IState state, String schoolName)");
+            throw new JobInterruptException();
+        }
 
         // School from state
         School school = state.retrieve(schoolName);
