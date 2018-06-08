@@ -8,7 +8,7 @@ The project relies on interfaces and depends on a MongoDB instance.
 - ### Interfaces
   **IFetcher**: Network resources. Define how network resources should be acquired.  
   **IState**: State management. Define how the project should handle state.  
-  **IPublisher**: Post logics. It is possible to add support for another social networks.  
+  **IPublisher**: Post logics. It is possible to add support for other social networks.  
   **IAction**: Job actions. The scheduler will dispatch jobs and jobs will dispatch actions.  
   
  - ### MongoDB
@@ -18,7 +18,7 @@ The project relies on interfaces and depends on a MongoDB instance.
     The project is using sundial scheduler (https://github.com/knowm/Sundial), based on a cron rule it will dispatch a job to verify new courses; when new courses were found another job will be scheduled to handle Facebook promotion.
     
 ## Configuration
-You can configure the project through env vars or through an .env file that must be placed in the root folder of project.
+You can configure the project through env vars or through an .env file that must be placed in the root folder of the project.
   ### FACEBOOK SETTINGS
    **FBBOT_FB_PAGE_ID**  
    **FBBOT_FB_PAGE_TOKEN**  
