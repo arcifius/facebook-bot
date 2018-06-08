@@ -8,10 +8,10 @@ import br.com.arcifius.robot.models.FacebookPublication;
 import br.com.arcifius.robot.models.School;
 
 public class PostAction implements IAction {
-    private IPublisher publisher;
-    private Course course;
-    private School school;
-    private String mode;
+    private final IPublisher publisher;
+    private final Course course;
+    private final School school;
+    private final String mode;
 
     public PostAction(IPublisher publisher, School school, Course course, String mode) {
         this.publisher = publisher;
@@ -23,11 +23,11 @@ public class PostAction implements IAction {
     @Override
     public String act() throws Exception {
         FacebookImage fbImage;
-        FacebookPublication mode = FacebookPublication.valueOf(this.mode);
+        FacebookPublication publicationMode = FacebookPublication.valueOf(this.mode);
         String postMessage = Configuration.get("FB_TEXT_TEMPLATE");
         String postID = null;
 
-        switch (mode) {
+        switch (publicationMode) {
             case TEXT_AND_IMAGE:
                 fbImage = new FacebookImage("courseImage", course.getLogo_url());
                 postMessage = this.processMessage(postMessage);

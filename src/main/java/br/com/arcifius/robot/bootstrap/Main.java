@@ -23,6 +23,9 @@ public class Main {
         String stringMode = Configuration.get("ROBOT_MODE");
         RobotMode mode = RobotMode.valueOf(stringMode);
 
+        Map<String, Object> postJobParams = new HashMap<>();
+        postJobParams.put("publisher", new FacebookPublisher());
+
         switch (mode) {
         case POOLING:
             Map<String, Object> verifyJobParams = new HashMap<>();
@@ -30,22 +33,14 @@ public class Main {
             verifyJobParams.put("state", new MongoState(Configuration.get("DATABASE_URI")));
             verifyJobParams.put("schoolName", Configuration.get("SCHEDULER_SCHOOL"));
 
-            Map<String, Object> postJobParams = new HashMap<>();
-            postJobParams.put("publisher", new FacebookPublisher());
-
             SundialJobScheduler.startScheduler("br.com.arcifius.robot.jobs");
             SundialJobScheduler.addJob("VerifyJob", "br.com.arcifius.robot.jobs.VerifyJob", verifyJobParams, false);
             SundialJobScheduler.addCronTrigger("VerifyJob-Cron-Trigger", "VerifyJob", Configuration.get("SCHEDULER_INTERVAL"));
             SundialJobScheduler.addJob("PostJob", "br.com.arcifius.robot.jobs.PostJob", postJobParams, true);
             break;
 
-        case WEBHOOK:
-            // Not implemented yet
-            System.err.println(mode + " mode isnt available.");
-            break;
-
         default:
-            System.err.println("Provided mode isnt supported. You must use POOLING or WEBHOOK");
+            System.err.println("Provided mode isnt supported. We only support POOLING at the moment.");
         }
     }
 }
