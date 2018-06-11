@@ -56,7 +56,7 @@ With your .env file ready, start the project with:
 
 ## Testing
 This project implements unit tests. You can run all the tests with  
-```mvn test```
+```mvn clean test```
 
 ## About modes
 The project was designed to support another modes. You can add the specific behavior for each new mode on Main class under bootstrap package.  
