@@ -1,26 +1,25 @@
 # Base image
-FROM maven:3.5.3-jdk-8-slim
+FROM maven:3.5.3-jdk-8-alpine
 
 # Author
 LABEL "Author"="Arcifius <augustopaladin@gmail.com>"
 
-# Create robot folder
+# Create robot folders
 RUN mkdir -p /opt/robot
-RUN mkdir -p /opt/robot/scripts
-
-# Copy pom.xml and scripts
-COPY pom.xml /opt/robot
-COPY scripts/build.sh /opt/robot/scripts
-COPY scripts/run.sh /opt/robot/scripts
-COPY .env /opt/robot
 
 # Change workdir
 WORKDIR /opt/robot
 
-# Build
-RUN sh scripts/build.sh
+# Copy pom.xml, scripts and .env
+COPY pom.xml .
+
+# Download dependencies
+RUN mvn -B -e dependency:resolve
 
 # Send files
-COPY . /opt/robot
+COPY . .
 
-ENTRYPOINT ["sh", "scripts/run.sh"]
+# Package
+RUN mvn -B -e package
+
+ENTRYPOINT ["java", "-jar", "target/facebook-robot-1.0-SNAPSHOT.jar"]

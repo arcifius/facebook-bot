@@ -6,8 +6,6 @@ services:
       - .env
     depends_on:
       - database
-    volumes:
-      - ./:/opt/robot
 
   database:
     image: mongo
