@@ -24,9 +24,11 @@ hs_err_pid*
 .vscode
 .classpath
 .project
+bin
 
 # Netbeans
 nbactions.xml
+nbproject
 
 # Local env
 .env

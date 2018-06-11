@@ -1,5 +1,14 @@
 version: "2"
 services:
+  bot:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      - database
+    volumes:
+      - ./:/opt/robot
+
   database:
     image: mongo
     ports:

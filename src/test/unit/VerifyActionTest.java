@@ -1,4 +1,4 @@
-package br.com.arcifius.robot.jobs.actions;
+package unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import br.com.arcifius.robot.jobs.actions.VerifyAction;
 import br.com.arcifius.robot.models.Course;
 import br.com.arcifius.robot.models.School;
 import br.com.arcifius.robot.network.IFetcher;

@@ -1,6 +1,7 @@
 package br.com.arcifius.robot.state;
 
 import br.com.arcifius.robot.models.School;
+import br.com.arcifius.robot.state.IState;
 
 public class MockState implements IState {
     private School school;

@@ -1,4 +1,4 @@
-package br.com.arcifius.robot.jobs.actions;
+package unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -16,6 +16,7 @@ import br.com.arcifius.robot.models.Course;
 import br.com.arcifius.robot.models.FacebookPublication;
 import br.com.arcifius.robot.models.School;
 import br.com.arcifius.robot.facebook.MockPublisher;
+import br.com.arcifius.robot.jobs.actions.PostAction;
 
 public class PostActionTest {
     private List<Course> coursesFromState;

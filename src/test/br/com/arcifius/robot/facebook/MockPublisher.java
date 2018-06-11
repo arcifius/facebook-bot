@@ -1,5 +1,6 @@
 package br.com.arcifius.robot.facebook;
 
+import br.com.arcifius.robot.facebook.IPublisher;
 import br.com.arcifius.robot.facebook.models.FacebookImage;
 
 public class MockPublisher implements IPublisher {

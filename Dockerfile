@@ -9,15 +9,18 @@ RUN mkdir -p /opt/robot
 
 # Copy pom.xml and scripts
 COPY pom.xml /opt/robot
+COPY scripts /opt/robot
 
 # Change workdir
 WORKDIR /opt/robot
 
+# Resolve dependencies
+RUN mvn dependency:resolve
+
 # Send files
 COPY . /opt/robot
 
-# Build & Start robot
-RUN mvn clean install
+# Build
+RUN sh scripts/build.sh
 
-# Start robot
-RUN sh scripts/run.sh &
+ENTRYPOINT ["sh", "scripts/run.sh"]
