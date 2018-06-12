@@ -1,4 +1,4 @@
-package unit;
+package br.com.arcifius.robot.jobs.actions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
