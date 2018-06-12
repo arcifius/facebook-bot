@@ -18,11 +18,11 @@ The project relies on interfaces and depends on a MongoDB instance.
     The project is using sundial scheduler (https://github.com/knowm/Sundial), based on a cron rule it will dispatch a job to verify new courses; when new courses were found another job will be scheduled to handle Facebook promotion.
     
 ## Configuration
-You can configure the project through a **.env file that must be placed in the root folder of the project**.
+You need to configure the project through a **.env file that must be placed in the root folder of the project**.
   ### FACEBOOK SETTINGS
    - **FBBOT_FB_PAGE_ID**  
    - **FBBOT_FB_PAGE_TOKEN**  
-   - **FBBOT_FB_PUBLICATION_TYPE** (`TEXT_ONLY`, `IMAGE_ONLY`, `TEXT_AND_IMAGE`) defaults to `TEXT_AND_IMAGE`  
+   - **FBBOT_FB_PUBLICATION_TYPE** (`TEXT_ONLY`, `IMAGE_ONLY`, `TEXT_AND_IMAGE`) defaults to `TEXT_ONLY`  
      Note that if your course doesn't contains an image, the robot will throw an exception and your post will be skipped.
    - **FBBOT_FB_TEXT_TEMPLATE** (defaults to `Confira nosso novo curso: %NEW_COURSE_TITLE%`)  
      Note that some words will be replaced for you `%NUMBER_OF_COURSES%`, `%NEW_COURSE_TITLE%`, `%SCHOOL_NAME%`
@@ -32,7 +32,7 @@ You can configure the project through a **.env file that must be placed in the r
     You dont need to define this as, currently, only `POOLING` is supported.
   
   ### DATABASE SETTINGS
-  - **FBBOT_DATABASE_URI** (defaults to `mongodb://localhost:27017`)  
+  - **FBBOT_DATABASE_URI** (defaults to `mongodb://database:27017`)  
   
   ### SCHEDULER
   - **FBBOT_SCHEDULER_SCHOOL**  
@@ -44,10 +44,10 @@ You can configure the project through a **.env file that must be placed in the r
 FBBOT_FB_PAGE_ID=
 FBBOT_FB_PAGE_TOKEN=
 FBBOT_FB_PUBLICATION_TYPE=TEXT_AND_IMAGE
-FBBOT_FB_TEXT_TEMPLATE="Confira nosso mais recente curso de %NEW_COURSE_TITLE%."
+FBBOT_FB_TEXT_TEMPLATE=Confira nosso mais recente curso de %NEW_COURSE_TITLE%.
 FBBOT_ROBOT_MODE=POOLING
 FBBOT_SCHEDULER_SCHOOL=arcifius
-FBBOT_SCHEDULER_INTERVAL="0/60 * * * * ?"
+FBBOT_SCHEDULER_INTERVAL=0/60 * * * * ?
 FBBOT_DATABASE_URI=mongodb://database:27017
 ```
 Note that you still need to provide a **page id** and **page token**, both can be obtained from Facebook.  
@@ -55,8 +55,7 @@ With your .env file ready, start the project with:
 ```docker-compose up --build```
 
 ## Testing
-This project implements unit tests. You can run all the tests with  
-```mvn clean test```
+This project implements unit tests. You can run all the tests with ```mvn clean test```
 
 ## About modes
 The project was designed to support another modes. You can add the specific behavior for each new mode on Main class under bootstrap package.  

@@ -1,23 +1,21 @@
 package br.com.arcifius.robot.state;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-
-import org.bson.Document;
-
-import com.mongodb.client.MongoCollection;
-import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.FindIterable;
+import org.bson.Document;
+import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.List;
 import br.com.arcifius.robot.models.Course;
 import br.com.arcifius.robot.models.School;
-
-import com.mongodb.client.FindIterable;
 
 /**
  * Mongo Implementation to manage state

@@ -1,12 +1,12 @@
 package br.com.arcifius.robot.jobs;
 
-import org.knowm.sundial.Job;
-import org.knowm.sundial.SundialJobScheduler;
-import org.knowm.sundial.exceptions.JobInterruptException;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.knowm.sundial.Job;
+import org.knowm.sundial.SundialJobScheduler;
+import org.knowm.sundial.exceptions.JobInterruptException;
 
 import br.com.arcifius.robot.jobs.actions.VerifyAction;
 import br.com.arcifius.robot.models.Course;
@@ -14,6 +14,11 @@ import br.com.arcifius.robot.models.School;
 import br.com.arcifius.robot.network.IFetcher;
 import br.com.arcifius.robot.state.IState;
 
+/**
+ * VerifyJob will forward relevant information from job context to VerifyAction
+ * 
+ * @author Augusto Russo
+ */
 public class VerifyJob extends Job {
 
     @Override
@@ -26,7 +31,8 @@ public class VerifyJob extends Job {
         String schoolName = this.getJobContext().get("schoolName");
 
         if (fetcher == null || state == null || schoolName == null) {
-            System.err.println("Verify job expects the job context to contain (IFetcher fetcher, IState state, String schoolName)");
+            System.err.println(
+                    "Verify job expects the job context to contain (IFetcher fetcher, IState state, String schoolName)");
             throw new JobInterruptException();
         }
 

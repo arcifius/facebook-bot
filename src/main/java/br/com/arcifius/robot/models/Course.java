@@ -1,10 +1,8 @@
-/*
- * Represents an eadbox course
- */
 package br.com.arcifius.robot.models;
 
 /**
- *
+ * Represents an eadbox course
+ * 
  * @author Augusto Russo
  */
 public class Course {

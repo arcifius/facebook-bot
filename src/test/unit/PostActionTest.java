@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import br.com.arcifius.robot.facebook.IPublisher;
 import br.com.arcifius.robot.models.Course;
-import br.com.arcifius.robot.models.FacebookPublication;
+import br.com.arcifius.robot.facebook.models.FacebookPublication;
 import br.com.arcifius.robot.models.School;
 import br.com.arcifius.robot.facebook.MockPublisher;
 import br.com.arcifius.robot.jobs.actions.PostAction;

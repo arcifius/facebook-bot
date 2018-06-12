@@ -8,6 +8,12 @@ import br.com.arcifius.robot.models.Course;
 import br.com.arcifius.robot.models.School;
 import br.com.arcifius.robot.network.IFetcher;
 
+/**
+ * VerifyAction
+ * This action will handle verification of new courses.
+ * 
+ * @author Augusto Russo
+ */
 public class VerifyAction implements IAction {
     private final IFetcher fetcher;
     private final School school;

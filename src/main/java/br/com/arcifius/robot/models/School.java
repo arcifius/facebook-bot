@@ -1,12 +1,10 @@
-/*
- * Represents an eadbox school
- */
 package br.com.arcifius.robot.models;
 
 import java.util.List;
 
 /**
- *
+ * Represents an eadbox school
+ * 
  * @author Augusto Russo
  */
 public class School {

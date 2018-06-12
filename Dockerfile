@@ -10,16 +10,17 @@ RUN mkdir -p /opt/robot
 # Change workdir
 WORKDIR /opt/robot
 
-# Copy pom.xml, scripts and .env
+# Copy pom.xml
 COPY pom.xml .
 
-# Download dependencies
-RUN mvn -B -e dependency:resolve
+# Resolve dependencies
+RUN mvn dependency:resolve
 
 # Send files
 COPY . .
 
 # Package
-RUN mvn -B -e package
+RUN mvn package
 
+# Start
 ENTRYPOINT ["java", "-jar", "target/facebook-robot-1.0-SNAPSHOT.jar"]

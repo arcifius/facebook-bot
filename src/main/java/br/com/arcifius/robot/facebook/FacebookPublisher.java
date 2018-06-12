@@ -1,7 +1,5 @@
 package br.com.arcifius.robot.facebook;
 
-import br.com.arcifius.robot.bootstrap.Configuration;
-import br.com.arcifius.robot.facebook.models.FacebookImage;
 import com.restfb.BinaryAttachment;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
@@ -9,6 +7,9 @@ import com.restfb.Parameter;
 import com.restfb.Version;
 import com.restfb.exception.FacebookException;
 import com.restfb.types.FacebookType;
+
+import br.com.arcifius.robot.bootstrap.Configuration;
+import br.com.arcifius.robot.facebook.models.FacebookImage;
 
 /**
  * This class manages Facebook publications.

@@ -3,7 +3,7 @@ package br.com.arcifius.robot.state;
 import br.com.arcifius.robot.models.School;
 
 /**
- * IState
+ * IState interface
  * 
  * @author Augusto Russo
  */

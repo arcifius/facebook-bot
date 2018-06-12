@@ -1,13 +1,10 @@
-/*
- * Publisher interface
- * 
- */
 package br.com.arcifius.robot.facebook;
 
 import br.com.arcifius.robot.facebook.models.FacebookImage;
 
 /**
- *
+ * Publisher interface
+ * 
  * @author Augusto Russo
  */
 public interface IPublisher {

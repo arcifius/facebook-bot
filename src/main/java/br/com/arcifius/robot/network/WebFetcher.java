@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 /**
- * Web Fetcher<br>
+ * Web Fetcher
  * Try to fetch network resource 5 times
  * 
  * @author Augusto Russo

@@ -37,6 +37,11 @@ public class FacebookImage {
         return this.url;
     }
 
+    /**
+     * Downloads image from URL and convert it to a byte array.
+     * 
+     * @return byte array relative to the image URL or null if it fails
+     */
     public byte[] getBytes() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 

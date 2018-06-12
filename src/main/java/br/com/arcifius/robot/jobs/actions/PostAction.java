@@ -1,12 +1,20 @@
 package br.com.arcifius.robot.jobs.actions;
 
+import org.knowm.sundial.exceptions.JobInterruptException;
+
 import br.com.arcifius.robot.bootstrap.Configuration;
 import br.com.arcifius.robot.facebook.IPublisher;
 import br.com.arcifius.robot.facebook.models.FacebookImage;
+import br.com.arcifius.robot.facebook.models.FacebookPublication;
 import br.com.arcifius.robot.models.Course;
-import br.com.arcifius.robot.models.FacebookPublication;
 import br.com.arcifius.robot.models.School;
 
+/**
+ * PostAction
+ * This action will handle facebook promotions (posts).
+ * 
+ * @author Augusto Russo
+ */
 public class PostAction implements IAction {
     private final IPublisher publisher;
     private final Course course;
@@ -29,7 +37,7 @@ public class PostAction implements IAction {
 
         switch (publicationMode) {
             case TEXT_AND_IMAGE:
-                fbImage = new FacebookImage("courseImage", course.getLogo_url());
+                fbImage = new FacebookImage("Course image", course.getLogo_url());
                 postMessage = this.processMessage(postMessage);
                 postID = publisher.publishImageWithText(fbImage, postMessage);
                 break;
@@ -44,14 +52,18 @@ public class PostAction implements IAction {
                 postID = publisher.publishImage(fbImage);
                 break;
 
-            default:
-                System.err.println("Post wasnt performed because you provide an invalid post mode."
+            default:            
+                System.err.println("Post wasnt performed because you provided an invalid post mode."
                         + "You must provide one of: TEXT_AND_IMAGE, TEXT_ONLY or IMAGE_ONLY");
+                throw new JobInterruptException();
         }
 
         return postID;
     }
 
+    /**
+     * Replaces reserved words from template with real data.
+     */
     public String processMessage(String message) {
         String processed;
         processed = message.replace("%SCHOOL_NAME%", this.school.getName());
