@@ -29,8 +29,10 @@ public class WebFetcher implements IFetcher {
 
         do {
             courses = get(url);
+            currentTries++;
         } while (courses == null && currentTries < maxTries);
 
+        currentTries = 0;
         return courses;
     }
 
