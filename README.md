@@ -1,4 +1,4 @@
-# Facebook Post Manager
+# Facebook Bot
 
 ## Overview
 This project tracks an eadbox (https://eadbox.com) school looking for new courses. Every new course is promoted on Facebook and you can choose how it should look, it is possible to include support for multiple schools tracking with minor changes.
